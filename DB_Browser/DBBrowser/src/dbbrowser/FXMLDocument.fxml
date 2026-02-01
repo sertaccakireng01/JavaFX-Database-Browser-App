@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dbbrowser.FXMLDocumentController">
+   <children>
+      <BorderPane prefHeight="600.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <SplitPane dividerPositions="0.22" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <VBox layoutX="36.0" layoutY="46.0" prefHeight="598.0" prefWidth="195.0" spacing="10.0" style="-fx-background-color: #f4f4f4;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Button fx:id="btnConnected" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleConnect" style="-fx-base: #95a5a6;" text="Click to Connect" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                                 <tooltip>
+                                    <Tooltip text="Click to establish connection to MySQL" />
+                                 </tooltip>
+                              </Button>
+                              
+                              <Label text="Database Tables">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              
+                              <ListView fx:id="listTables" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #bdc3c7; -fx-background-radius: 5;" VBox.vgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <TabPane fx:id="mainTabPane" layoutX="67.0" layoutY="87.0" prefHeight="598.0" prefWidth="697.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <tabs>
+                            <Tab text="Display Contents">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <BorderPane prefHeight="569.0" prefWidth="697.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <top>
+                                                <HBox spacing="10.0" style="-fx-background-color: #ecf0f1; -fx-border-color: #bdc3c7; -fx-border-width: 0 0 1 0;" BorderPane.alignment="CENTER">
+                                                   <children>
+                                                      <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#handleAdd" style="-fx-base: #3498db;" text="Add New" textFill="WHITE" />
+                                                      <Button fx:id="btnUpdate" mnemonicParsing="false" onAction="#handleUpdate" style="-fx-base: #f39c12;" text="Update Selected" textFill="WHITE" />
+                                                      <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#handleDelete" style="-fx-base: #e74c3c;" text="Delete Selected" textFill="WHITE" />
+                                                   </children>
+                                                   <padding>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </padding>
+                                                </HBox>
+                                             </top>
+                                             <center>
+                                                <TableView fx:id="tableMain" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                                             </center>
+                                             <bottom>
+                                                <VBox spacing="5.0" style="-fx-background-color: #ecf0f1; -fx-border-color: #bdc3c7; -fx-border-width: 1 0 0 0;" BorderPane.alignment="CENTER">
+                                                   <children>
+                                                      <Label text="New Entry / Update Input Area:" textFill="#7f8c8d">
+                                                         <font>
+                                                            <Font name="System Italic" size="11.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <HBox fx:id="inputArea" alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="671.0" spacing="5.0" />
+                                                      
+                                                      <HBox spacing="10.0">
+                                                         <children>
+                                                            <Button fx:id="btnDoIt" mnemonicParsing="false" onAction="#handleDoIt" prefWidth="120.0" text="Confirm &gt;">
+                                                               <font>
+                                                                  <Font name="System Bold" size="12.0" />
+                                                               </font>
+                                                            </Button>
+                                                            <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#handleCancel" prefWidth="100.0" style="-fx-base: #95a5a6;" text="Cancel" textFill="WHITE" visible="false">
+                                                               <font>
+                                                                  <Font name="System Bold" size="12.0" />
+                                                               </font>
+                                                            </Button>
+                                                         </children>
+                                                      </HBox>
+                                                      
+                                                   </children>
+                                                   <padding>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </padding>
+                                                </VBox>
+                                             </bottom>
+                                          </BorderPane>
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                            <Tab text="Custom Query">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <VBox prefHeight="569.0" prefWidth="697.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <Label text="Enter your SQL query below:">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font></Label>
+                                                <TextArea fx:id="txtQuery" promptText="Example: SELECT * FROM Student WHERE deptId = 'CS';" style="-fx-font-family: monospace;" prefHeight="120.0" VBox.vgrow="ALWAYS" />
+                                                <HBox alignment="TOP_RIGHT">
+                                                   <children>
+                                                      <Button fx:id="btnExecute" mnemonicParsing="false" onAction="#handleExecute" prefWidth="100.0" style="-fx-base: #2c3e50;" text="Execute SQL" textFill="WHITE" />
+                                                   </children>
+                                                </HBox>
+                                                <Label text="Query Results:" textFill="#7f8c8d" />
+                                                <TableView fx:id="tableQuery" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="10.0" left="15.0" right="15.0" top="15.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                          </tabs>
+                        </TabPane>
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+         </center>
+         <bottom>
+            <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="900.0" style="-fx-background-color: #dfe6e9; -fx-border-color: #b2bec3; -fx-border-width: 1 0 0 0;" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="Status:" textFill="#636e72">
+                     <font>
+                        <Font name="System Bold" size="11.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="lblStatus" text="Waiting for connection..." textFill="#2d3436">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+            </HBox>
+         </bottom>
+      </BorderPane>
+   </children>
+</AnchorPane>
